@@ -1,0 +1,100 @@
+@Host=http://localhost:3001/
+@Token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTY0NDI0OTQ3NiwiZXhwIjoxNjQ0MjUzMDc2fQ.rA2IZnfjWZoyOe8n0lhSnyxriR0QTFY_1l3oimdjjmE
+
+
+###
+GET {{Host}}
+
+###
+GET {{Host}}post
+
+###
+GET {{Host}}post/1
+
+###
+POST {{Host}}post
+Content-Type: application/json
+
+{
+    "title": "Pedido",
+    "content": "Comprando",
+    "slug":"Cualqioer cosa",
+    "excerpt":"Cualqioer cosa",
+    "content":"Cualqioer cosa",
+    "category":"CODDING",
+    "tags":["haola","jasdkjf"],
+    "status":true
+}
+
+###
+PUT {{Host}}post/3
+Content-Type: application/json
+
+{
+    "title": "edit Pedido",
+    "content": "Comprando",
+    "slug":"Cualqioer cosa",
+    "excerpt":"Cualqioer cosa",
+    "content":"Cualqioer cosa",
+    "tags":["haola","jasdkjf"],
+    "status":true
+}
+
+###
+DELETE {{Host}}post/2
+
+###
+//Ver informacion de usuarios
+GET {{Host}}user
+
+###
+GET {{Host}}user/1
+
+###
+POST {{Host}}user
+Content-Type: application/json
+
+{
+    "name":"Nori",
+    "lastName":"La gorda",
+    "email":"nori1@gmail.com",
+    "password":"Nori-123"
+}
+
+###
+PUT {{Host}}user/2
+Content-Type: application/json
+
+{
+    "lastName":"La gorda2"
+}
+
+###
+PUT {{Host}}user/2
+Content-Type: application/json
+
+{
+    "password":"Nori-1234"
+}
+
+//Auth
+###
+POST {{Host}}auth/login
+Content-Type: application/json
+
+{
+    "email":"nori@gmail.com",
+    "password":"Nori-123"
+}
+
+###
+GET {{Host}}auth/profile
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+###
+GET {{Host}}auth/refresh
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+

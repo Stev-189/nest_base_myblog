@@ -1,0 +1,48 @@
+//https://www.youtube.com/watch?v=eL2tO9xPZLM
+nest new myblog
+touch Notas.txt
+npm run start:dev
+
+//geranda un modulo
+nest g mo post
+nest g co post --no-spec
+npm i class-validator class-transformer
+npm i @nestjs/swagger swagger-ui-express
+//creamos le servicio
+nest g s post --no-spec
+npm install --save @nestjs/typeorm typeorm mysql2
+
+npm i bycryptjs
+npm i -D @types/bycryptjs
+
+//extra
+brew services start mongodb-community
+mongo
+Ssh
+ls -al ~/.ssh 
+~/.ssh/id_rsa.pub | pbcopy
+
+//mysql
+//https://devdotcode.com/how-to-add-mysql-to-the-path-in-mac-os/
+sudo mysql.server start
+
+
+//generar modulos de ususario
+nest g mo user
+nest g co user --no-spec
+nest g s user --no-spec
+nest g class user/dtos/createUser.dto --no-spec
+nest g class user/dtos/editUser.dto --no-spec
+nest g class user/entities/user.entity --no-spec
+
+//generando el modulo de autenticacion
+nest g mo auth
+nest g co auth --no-spec
+nest g s auth --no-spec
+
+npm install --save @nestjs/passport passport passport-local
+npm install --save-dev @types/passport-local
+npm i @nestjs/jwt passport-jwt
+npm i -D @types/passport-jwt
+
+2:16
