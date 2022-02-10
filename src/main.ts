@@ -5,6 +5,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { initSwagger } from './app.swagger';
 import { PORT } from './config/constants';
+import setDefaultUser from './config/default-user';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,6 +16,7 @@ async function bootstrap() {
 
   //iniciamos Swagger para la documentacion de la API
   initSwagger(app);
+  setDefaultUser(config);
 
   //validador de los envio de datos DTOS
   app.useGlobalPipes(

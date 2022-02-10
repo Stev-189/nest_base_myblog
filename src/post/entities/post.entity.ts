@@ -5,9 +5,9 @@ import {
     CreateDateColumn,
     ManyToOne,
     JoinColumn,
-    UpdateDateColumn
+    //UpdateDateColumn
   } from 'typeorm';
-  //import { User } from 'src/user/entities';
+  import { User } from 'src/user/entities';
   
   @Entity('posts')
   export class Post {
@@ -38,14 +38,14 @@ import {
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
     createdAt: Date;
   
-    // @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    // updatedAt: Date;
+    //@UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
+    //updatedAt: Date;
   
-  /*   @ManyToOne(
+    @ManyToOne(
      () => User,
       user => user.posts,
       { eager: true },
     )
     @JoinColumn({ name: 'author' })
-    author: User; */
+    author: User;
   }

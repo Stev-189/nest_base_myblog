@@ -1,6 +1,7 @@
 @Host=http://localhost:3001/
-@Token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTY0NDI4MzI1NSwiZXhwIjoxNjQ0Mjg2ODU1fQ.JJfyhdgSOv-x3dCc74sEgs3Ey4MCOb_a-06RtJjscsw
-
+@Token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImlhdCI6MTY0NDM3ODE1NSwiZXhwIjoxNjQ0MzgxNzU1fQ.okviPZcz04Sl2f_GYYXhVDB5xD-xlyE3YKwhivLu2qk
+@TokenAdmi = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImlhdCI6MTY0NDMyNjY4MywiZXhwIjoxNjQ0MzMwMjgzfQ.p04sDdR-GacbSxZ2PU4Ksiopl8kN8ZLmLcml3drtluw
+@TokenOtherAuthor =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjksImlhdCI6MTY0NDMyODMyNCwiZXhwIjoxNjQ0MzMxOTI0fQ.nuOszw22WECqhP4uQP1fGPWMwOjTgrucV4jvxB8oVXA
 
 ###
 GET {{Host}}
@@ -14,9 +15,10 @@ GET {{Host}}post/1
 ###
 POST {{Host}}post
 Content-Type: application/json
+Authorization: Bearer {{Token}}
 
 {
-    "title": "Pedido",
+    "title": "Pedido3",
     "content": "Comprando",
     "slug":"Cualqioer cosa",
     "excerpt":"Cualqioer cosa",
@@ -29,6 +31,7 @@ Content-Type: application/json
 ###
 PUT {{Host}}post/3
 Content-Type: application/json
+Authorization: Bearer {{Token}}
 
 {
     "title": "edit Pedido",
@@ -42,6 +45,7 @@ Content-Type: application/json
 
 ###
 DELETE {{Host}}post/2
+Authorization: Bearer {{Token}}
 
 ###
 //Ver informacion de usuarios
@@ -53,38 +57,61 @@ GET {{Host}}user/1
 ###
 POST {{Host}}user
 Content-Type: application/json
+Authorization: Bearer {{TokenAdmi}}
 
 {
     "name":"Nori",
     "lastName":"La gorda",
-    "email":"nori1@gmail.com",
-    "password":"Nori-123"
+    "email":"nori4@gmail.com",
+    "password":"Nori-123",
+    "roles":["AUTHOR"]
 }
 
-###
-PUT {{Host}}user/2
+### edotar por propio usuario
+PUT {{Host}}user/5
 Content-Type: application/json
+Authorization: Bearer {{Token}}
 
 {
     "lastName":"La gorda2"
 }
 
-###
-PUT {{Host}}user/2
+### editar por propio usuario
+PUT {{Host}}user/5
 Content-Type: application/json
+Authorization: Bearer {{Token}}
 
 {
-    "password":"Nori-1234"
+    "lastName":"La gordaEdit"
 }
 
-//Auth
+
+### Editar por otro usuario
+PUT {{Host}}user/5
+Content-Type: application/json
+Authorization: Bearer {{TokenOtherAuthor}}
+
+{
+    "lastName":"La gordaEdit"
+}
+
+//Auth AUTH
 ###
 POST {{Host}}auth/login
 Content-Type: application/json
 
 {
-    "email":"nori@gmail.com",
+    "email":"nori4@gmail.com",
     "password":"Nori-123"
+}
+
+### Login admin
+POST {{Host}}auth/login
+Content-Type: application/json
+
+{
+    "email":"admin@gmail.com",
+    "password":"admin_123"
 }
 
 ###
@@ -92,9 +119,35 @@ GET {{Host}}auth/profile
 Content-Type: application/json
 Authorization: Bearer {{Token}}
 
-###
+### refresh AUTH
 GET {{Host}}auth/refresh
 Content-Type: application/json
 Authorization: Bearer {{Token}}
+
+### refresh AUTH
+GET {{Host}}auth/refresh
+Content-Type: application/json
+Authorization: Bearer {{TokenOtherAuthor}}
+
+### refresh ADMIN
+GET {{Host}}auth/refresh
+Content-Type: application/json
+Authorization: Bearer {{TokenAdmi}}
+
+###
+DELETE {{Host}}user/4
+Content-Type: application/json
+Authorization: Bearer {{Token}}
+
+### crear AUTHOR sin registrar
+POST {{Host}}user/register
+Content-Type: application/json
+
+{
+    "name":"Nori",
+    "lastName":"La gorda",
+    "email":"norilafirda2@gmail.com",
+    "password":"Nori-123"
+}
 
 

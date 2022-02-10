@@ -1,4 +1,4 @@
-import { IsArray, IsBoolean, IsEnum, IsString } from "class-validator";
+import { IsArray, IsBoolean, IsEnum, IsOptional, IsString } from "class-validator";
 import { EnumToString } from "src/common/helpers/enumToString";
 import { PostCategory } from "../enums";
 
@@ -23,6 +23,7 @@ export class CreatePostDto {
     @IsString({ each: true })
     tags: string[];
 
+    @IsOptional()
     @IsBoolean()
     status: boolean;
 }

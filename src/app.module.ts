@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AccessControlModule } from 'nest-access-control';
+
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -8,6 +10,7 @@ import { PostModule } from './post/post.module';
 import { UserModule } from './user/user.module';
 import { DATABASE_HOST, DATABASE_NAME, DATABASE_PASSWORD, DATABASE_PORT, DATABASE_USERNAME } from './config/constants';
 import { AuthModule } from './auth/auth.module';
+import { roles } from './app.roles';
 
 @Module({
   imports: [
@@ -48,6 +51,7 @@ import { AuthModule } from './auth/auth.module';
       //donde esta la configuracion del servidor
       envFilePath: ['.env.development.local', '.env.development', '.env'],
     }),
+    AccessControlModule.forRoles(roles),
     //importamos el modulo de post
     PostModule,
     AuthModule,
