@@ -5,11 +5,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { initSwagger } from './app.swagger';
 import { PORT } from './config/constants';
-import setDefaultUser from './config/default-user';
+//esta era la importacion de config que no usaremos 
+//import setDefaultUser from './config/default-user';
+import { generateTypeormConfigFile, setDefaultUser } from './scripts';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const logger = new Logger();
+  const logger = new Logger(`Bootstrap`);
   //condifuracion de puerto en env
   const config = app.get(ConfigService);
   const port = parseInt(config.get<string>(PORT), 10) || 3000;
@@ -17,6 +19,7 @@ async function bootstrap() {
   //iniciamos Swagger para la documentacion de la API
   initSwagger(app);
   setDefaultUser(config);
+  generateTypeormConfigFile(config);
 
   //validador de los envio de datos DTOS
   app.useGlobalPipes(

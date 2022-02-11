@@ -45,4 +45,13 @@ npm install --save-dev @types/passport-local
 npm i @nestjs/jwt passport-jwt
 npm i -D @types/passport-jwt
 
-2:16
+
+npm i -D @hapi/joi para aagregar lofica la entornos de desarrollo
+// para arrancar dependiendo del entorno
+NODE_ENV=production npm run start:dev
+
+//para hacer una migracion
+//siempre hay que corre un build
+npm run build
+npm run db:migration:generate initilaState
+npm run build
